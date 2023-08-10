@@ -1,14 +1,8 @@
 <div class="app">
 	<header>
 		<nav>
-			<ol>
-				<li>
-					<a href="/">Home</a>
-				</li>
-				<li>
-					<a href="/todo">Todo List</a>
-				</li>
-			</ol>
+			<a href="/">Home</a>
+			<a href="/todo">Todo List</a>
 		</nav>
 	</header>
 
@@ -34,22 +28,19 @@
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
-
-	footer {
+	header nav {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		margin-inline: auto;
+		width: max-content;
 		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
+		justify-content: space-around;
 
-	footer a {
-		font-weight: bold;
+		padding: 0;
 	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
+	header a {
+		display: block;
+		flex-basis: 100%;
+		flex-shrink: 1;
 	}
 </style>
