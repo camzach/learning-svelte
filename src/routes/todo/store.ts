@@ -6,6 +6,7 @@ export type Todo = {
 	title: string;
 	description: string;
 	state: (typeof states)[number];
+	id: string;
 };
 
 function createLocalStorageStore<T>(key: string, initial: T) {

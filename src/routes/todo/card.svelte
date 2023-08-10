@@ -8,7 +8,13 @@
 	export let todo: Todo;
 </script>
 
-<div class="todoItem">
+<div
+	class="todoItem"
+	draggable={true}
+	on:dragstart={(e) => {
+		e.dataTransfer?.setData('todo', todo.id);
+	}}
+>
 	<div class="icon">
 		{#if todo.state === 'Completed'}
 			<img src={check} alt="Completed" />
