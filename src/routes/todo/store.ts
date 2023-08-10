@@ -1,9 +1,11 @@
 import { get, writable } from 'svelte/store';
 
+export const states = ['To Do', 'In Progress', 'Completed'] as const;
+
 export type Todo = {
 	title: string;
 	description: string;
-	state: 'todo' | 'inprogress' | 'completed';
+	state: (typeof states)[number];
 };
 
 function createLocalStorageStore<T>(key: string, initial: T) {

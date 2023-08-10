@@ -10,9 +10,9 @@
 
 <div class="todoItem">
 	<div class="icon">
-		{#if todo.state === 'completed'}
+		{#if todo.state === 'Completed'}
 			<img src={check} alt="Completed" />
-		{:else if todo.state === 'inprogress'}
+		{:else if todo.state === 'In Progress'}
 			<img src={watch} alt="In Progress" />
 		{:else}
 			<img src={page} alt="To Do" />
@@ -20,6 +20,7 @@
 	</div>
 	<h2>{todo.title}</h2>
 	<p>{todo.description}</p>
+	<button on:click={() => (todo.state = 'Completed')}>Done!</button>
 </div>
 
 <style>

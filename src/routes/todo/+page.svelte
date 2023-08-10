@@ -1,33 +1,23 @@
 <script lang="ts">
-	import { todos } from './store';
+	import { states, todos } from './store';
 	import Card from './card.svelte';
-
-	const sorted = $todos.reduce<Record<string, typeof $todos>>(
-		(acc, curr) => {
-			if (curr.state === 'todo') acc['To Do'].push(curr);
-			else if (curr.state === 'inprogress') acc['In Progress'].push(curr);
-			else acc['Complete'].push(curr);
-			return acc;
-		},
-		{ 'To Do': [], 'In Progress': [], Complete: [] }
-	);
 
 	let title = '';
 	let description = '';
 
 	function addTodo() {
-		$todos = [...$todos, { title, description, state: 'todo' }];
+		$todos = [...$todos, { title, description, state: 'To Do' }];
 		title = '';
 		description = '';
 	}
 </script>
 
 <div class="swimlanes">
-	{#each Object.entries(sorted) as [key, list]}
+	{#each states as lane}
 		<div class="lane">
-			<h1>{key}</h1>
-			{#each list as todo}
-				<Card {todo} />
+			<h1>{lane}</h1>
+			{#each $todos.filter(({ state }) => state === lane) as todo}
+				<Card bind:todo />
 			{/each}
 		</div>
 	{/each}
