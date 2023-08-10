@@ -1,6 +1,6 @@
 import { get, writable } from 'svelte/store';
 
-type Todo = {
+export type Todo = {
 	title: string;
 	description: string;
 	state: 'todo' | 'inprogress' | 'completed';
