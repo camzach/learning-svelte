@@ -6,7 +6,8 @@
 	import check from './images/Check.svg';
 
 	export let todo: Todo;
-	
+
+	let dragging = false;
 </script>
 
 <div
@@ -14,24 +15,25 @@
 	draggable={true}
 	on:dragstart={(e) => {
 		e.dataTransfer?.setData('todo', todo.id);
+		dragging = true;
 	}}
+	aria-grabbed={dragging}
+	role="listitem"
 >
-	<div class="icon">
-		{#if todo.state === 'Completed'}
-			<img src={check} alt="Completed" />
-		{:else if todo.state === 'In Progress'}
-			<img src={watch} alt="In Progress" />
-		{:else}
-			<img src={page} alt="To Do" />
-		{/if}
-	</div>
+	{#if todo.state === 'Completed'}
+		<img class="icon" src={check} alt="Completed" />
+	{:else if todo.state === 'In Progress'}
+		<img class="icon" src={watch} alt="In Progress" />
+	{:else}
+		<img class="icon" src={page} alt="To Do" />
+	{/if}
 	<h2>{todo.title}</h2>
 	<p>{todo.description}</p>
-	<button on:click={() => (todo.state = 'Completed')}>Done!</button>
 </div>
 
 <style>
 	.todoItem {
+		text-align: initial;
 		display: grid;
 		grid-template-columns: 1fr 2fr;
 		grid-template-rows: 1fr 1fr;
@@ -40,9 +42,8 @@
 		margin: 1em;
 	}
 	.icon {
-		grid-row: 1 / 3;
-	}
-	.icon img {
+		grid-row: span 2;
+		max-width: 100%;
 		height: 100%;
 	}
 </style>

@@ -31,10 +31,12 @@
 			on:dragenter|preventDefault
 			on:dragover|preventDefault
 			on:drop|preventDefault={handleDrop(lane)}
+			role="list"
 		>
 			<h1>{lane}</h1>
 			{#each $todos.filter(({ state }) => state === lane) as todo}
 				<Card bind:todo />
+				<div class="divider" role="presentation" />
 			{/each}
 		</div>
 	{/each}
@@ -51,5 +53,21 @@
 	}
 	.lane {
 		flex: 1;
+		background-color: darkgray;
+		border-radius: 10px;
+		text-align: center;
+		margin: 5px;
+	}
+	.divider:not(:last-of-type) {
+		border-image-source: linear-gradient(to right, rgba(0, 0, 0, 0), black, rgba(0, 0, 0, 0));
+		border-image-slice: 1;
+		border-top-width: 1px;
+		border-style: solid;
+		height: 0;
+		width: 75%;
+		margin-inline: auto;
+		border-left: 0;
+		border-right: 0;
+		border-bottom: 0;
 	}
 </style>
