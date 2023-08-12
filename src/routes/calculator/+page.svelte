@@ -6,7 +6,21 @@
 	function evaluate() {
 		expression = eval(expression).toString();
 	}
+
+	function handleKeyPress(e: KeyboardEvent) {
+		console.log(e.key);
+		if (
+			['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '/', '*', '.'].includes(e.key)
+		) {
+			buttonPress(e.key)();
+		}
+		if (e.key === 'Enter') {
+			evaluate();
+		}
+	}
 </script>
+
+<svelte:window on:keydown|preventDefault={handleKeyPress} />
 
 <div class="display">
 	{expression}
