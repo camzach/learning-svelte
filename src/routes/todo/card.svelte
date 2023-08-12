@@ -6,6 +6,7 @@
 	import check from './images/Check.svg';
 
 	export let todo: Todo;
+	
 </script>
 
 <div
