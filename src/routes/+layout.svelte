@@ -1,8 +1,13 @@
+<script>
+	import { base } from '$app/paths';
+</script>
+
 <div class="app">
 	<header>
 		<nav>
-			<a href="/">Home</a>
-			<a href="/todo">Todo List</a>
+			<a href={`${base}`}>Home</a>
+			<a href={`${base}/todo`}>Todo List</a>
+			<a href={`${base}/calculator`}>Calculator</a>
 		</nav>
 	</header>
 
